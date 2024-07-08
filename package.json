@@ -5,7 +5,7 @@
     "main": "server.js",
     "repository": {
         "type": "git",
-        "url": "git+asdf"
+        "url": "https://github.com/vlachvojta/openai_demo_node_js"
     },
     "scripts": {
         "start": "node server.js",
