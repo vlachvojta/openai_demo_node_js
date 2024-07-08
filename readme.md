@@ -1,10 +1,10 @@
 # openai demo Node.js
 
-Simple demo using Node.js and openai library.
-
-add image assets/demo.png
 <p align="center">
-  <img src="assets/demo.png" alt="Demo" width="300"/>
+  <img src="assets/demo.png" alt="Demo" width="700"/>
+</p>
+<p align="center">
+  Simple demo using Node.js and openai library.
 </p>
 
 ## Install and run
