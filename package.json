@@ -10,10 +10,11 @@
     "scripts": {
         "start": "node server.js",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "test_openai": "node openai-test.mjs"
+        "test_openai": "node openai-test-in-terminal.mjs"
     },
     "dependencies": {
         "express": "^4.17.1",
-        "openai": "^4.52.3"
+        "openai": "^4.52.3",
+        "readline": "^1.3.0"
     }
 }
