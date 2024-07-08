@@ -1,0 +1,19 @@
+{
+    "name": "openai_api_demo_nodejs",
+    "version": "1.0.0",
+    "license": "ISC",
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "git+asdf"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "test_openai": "node openai-test.mjs"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "openai": "^4.52.3"
+    }
+}
