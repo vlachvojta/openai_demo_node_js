@@ -17,7 +17,7 @@ app.listen(port, () => {
 
 app.post('/api/openai', async (req, res) => {
     const { userInput } = req.body;
-    console.log('Received a request to /api/openai with user input:', userInput);
+    console.log('Q:', userInput);
     try {
         const completion = await openai.chat.completions.create({
             messages: [
@@ -26,7 +26,9 @@ app.post('/api/openai', async (req, res) => {
             ],
             model: "gpt-3.5-turbo",
         });
-        res.json(completion.choices[0].message.content); // Send the completion back to the client
+        answer = completion.choices[0].message.content;
+        console.log('A:', answer);
+        res.json(answer);
     } catch (error) {
         console.error('Error calling OpenAI API:', error);
         res.status(500).send('Failed to get a response from the OpenAI API.');
