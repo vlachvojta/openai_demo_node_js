@@ -8,7 +8,7 @@ body {
   height: 100vh;
 }
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 #responseContainer {
   background-color: #212121;
@@ -21,7 +21,7 @@ h1 {
   overflow-y: scroll;
   width: 90%;
   width: 700px;
-  height: 70vh;
+  height: 60vh;
 }
 div.user {
   display: flex;
@@ -66,4 +66,9 @@ p.assistant {
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
+}
+img {
+  margin: 16px;
+  max-width: 200px;
+  height: auto;
 }

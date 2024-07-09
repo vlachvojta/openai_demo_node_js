@@ -6,14 +6,16 @@ async function submitAndFetchResponse() {
     const userInput = document.getElementById('textInput').value;
     console.log('Trying to send input to OpenAI API:', userInput);
     document.getElementById('status').innerText = '...getting response...';
-    document.getElementById('textInput').value = ''; // Clear the input field
     
     var conversation = get_conversation();
     conversation.push(get_last_message());
-
+    
     // console.log('Conversation:', conversation);  // print the whole conversation if needed
-    add_message(userInput, 'user');
+    add_message(userInput, 'user', document.getElementById('imageInput').value);
     console.log('Last message:', conversation[conversation.length - 1]);
+
+    document.getElementById('textInput').value = ''; // Clear the input field
+    document.getElementById('imageInput').value = ''; // Clear the image input field
 
     // Send the input to the server
     try {
@@ -48,7 +50,16 @@ function add_message(message, role, image_url=null) {
     new_message_div.className = role;
 
     var new_message = document.createElement('p');
-    new_message.innerText = message + (image_url ? '\n' + image_url.substring(0, 30) + '...' : ''); // Show only the first 30 characters of the image URL
+    new_message.innerText = message;
+    
+    if (image_url) {
+        new_message.innerText += '\n' + image_url.substring(0, 30) + '...'; // Show only the first 30 characters of the image URL 
+        var new_image = document.createElement('img');
+        new_image.src = image_url;
+        new_image.alt = 'Image';
+        new_message_div.appendChild(new_image);
+        }
+
     new_message.className = role;
     new_message_div.appendChild(new_message);
 
@@ -101,10 +112,14 @@ function get_last_message() {
 }
 
 // Enable submitting input by pressing Enter (without Shift)
-var input = document.getElementById("textInput");
-input.addEventListener("keypress", function(event) {
-    if (event.key === "Enter" && !event.shiftKey) {
-        event.preventDefault();
-        document.getElementById("btnSubmit").click();
-     }
-});
+addEventListener(document.getElementById("textInput"));
+addEventListener(document.getElementById("imageInput"));
+
+function addEventListener(element){
+    element.addEventListener("keypress", function(event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            document.getElementById("btnSubmit").click();
+        }
+    });
+}
