@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>openai-chatbot</title>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,28 +12,55 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* justify-content: center; */
       height: 100vh;
-      background-color: #f0f0f0;
     }
     h1 {
       margin-bottom: 20px;
     }
     #responseContainer {
+      background-color: #212121;
       margin-bottom: 20px;
       padding: 20px;
+      padding-top: 0px;
       border: 1px solid #ccc;
       border-radius: 5px;
       background-color: #fff;
-      overflow-y: auto;
-      max-height: 300px;
+      overflow-y: scroll;
+      width: 90%;
+      width: 700px;
+      height: 70vh;
+    }
+    div.user {
+      display: flex;
+      justify-content: flex-end;
+    }
+    p.user {
+      font-size: 16px;
+      margin-left: 30px;
+      background-color: bisque;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 0px;
+    }
+    div.assistant {
+      display: flex;
+      justify-content: flex-start;
+    }
+    p.assistant {
+      font-size: 16px;
+      margin-right: 30px;
+      background-color: cornsilk;
+      padding: 8px;
+      border-radius: 8px;
+      margin-top: 5px;
     }
     #textInput {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      width: 300px;
+      width: 600px;
       margin-right: 10px;
+      resize: vertical;
     }
     #btnSubmit {
       padding: 10px 20px;
@@ -45,11 +73,23 @@
   </style>
 </head>
 <body>
-  <h1>Ask me something</h1>
-  <div id="responseContainer" style="max-width: 700px;"></div>
-  <div style="display: flex; align-items: center;">
-    <input type="text" id="textInput" placeholder="Enter your text here..." style="margin-right: 10px;">
-    <button id="btnSubmit" onclick="sendInput()">Submit</button>
+  <div>
+    <h1>Ask me anything</h1>
+    <div id="responseContainer">
+      <div class="assistant">
+        <p class="assistant">Hi! I'm a chatbot trained by OpenAI. Ask me anything!</p>
+      </div>
+      <div class="user">
+        <p class="user">What's the weather today?</p>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <textarea id="textInput" placeholder="Enter your text here..."></textarea>
+      <button id="btnSubmit" onclick="sendInput()">Submit</button>
+    </div>
+    <div class="status">
+      <p id="status"></p>
+    </div>
   </div>
 
   <script src="send_input.js"></script>
