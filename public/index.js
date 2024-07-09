@@ -1,7 +1,7 @@
 // Frontend code for sending user input to the server
 // Runs in the browser
 
-async function sendInput() {
+async function submitAndFetchResponse() {
     const userInput = document.getElementById('textInput').value;
     console.log('Trying to send input to OpenAI API:', userInput);
     add_message(userInput, 'user');
