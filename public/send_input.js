@@ -27,3 +27,11 @@ async function sendInput() {
         document.getElementById('responseContainer').innerText += 'Failed to get a response from Node server, is it running?.';
     }
 }
+
+var input = document.getElementById("textInput");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("btnSubmit").click();
+  }
+});

@@ -3,13 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>openai-chatbot</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #responseContainer {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        #textInput {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        #btnSubmit {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Ask me something</h1>
-    <input type="text" id="textInput" placeholder="Enter your text here...">
-    <button onclick="sendInput()">Submit</button>
-    <!-- Add max width to responseContainer -->
     <div id="responseContainer" style="max-width: 700px;"></div>
+    <input type="text" id="textInput" placeholder="Enter your text here...">
+    <button id="btnSubmit" onclick="sendInput()">Submit</button>
 
     <script src="send_input.js"></script>
 </body>
