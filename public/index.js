@@ -36,6 +36,12 @@ async function submitAndFetchResponse() {
 
 // Add a message to the chat log
 function add_message(message, role) {
+    // Add a message packed in a new div and p element
+    // Resulting in a structure like this:
+    // <div class="{role}">
+    //   <p class="{role}">{message}</p>
+    // </div>
+
     var new_message_div = document.createElement('div');
     new_message_div.className = role;
     
@@ -45,7 +51,8 @@ function add_message(message, role) {
     new_message_div.appendChild(new_message);
 
     document.getElementById('responseContainer').appendChild(new_message_div);
-    document.getElementById('responseContainer').scrollTop = document.getElementById('responseContainer').scrollHeight;
+    document.getElementById('responseContainer').scrollTop = document.getElementById('responseContainer').scrollHeight; // Scroll to the bottom
+
     console.log('Message added:', message);
 }
 
