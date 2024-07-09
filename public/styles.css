@@ -48,13 +48,16 @@ p.assistant {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-#textInput {
+.input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 600px;
   margin-right: 10px;
   resize: vertical;
+}
+#imageInput {
+  margin-top: 5px;
 }
 #btnSubmit {
   padding: 10px 20px;

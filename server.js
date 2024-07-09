@@ -36,7 +36,7 @@ app.post('/api/openai', async (req, res) => {
     try {
         const completion = await openai.chat.completions.create({
             messages: messages,
-            model: "gpt-3.5-turbo",
+            model: "gpt-4o",
         });
         answer = completion.choices[0].message.content;
         console.log('GPT:', answer);

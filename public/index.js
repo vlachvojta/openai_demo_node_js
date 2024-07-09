@@ -5,12 +5,14 @@ async function submitAndFetchResponse() {
     // Handle submit
     const userInput = document.getElementById('textInput').value;
     console.log('Trying to send input to OpenAI API:', userInput);
-    add_message(userInput, 'user');
     document.getElementById('status').innerText = '...getting response...';
     document.getElementById('textInput').value = ''; // Clear the input field
-
+    
     var conversation = get_conversation();
+    conversation.push(get_last_message());
+
     // console.log('Conversation:', conversation);  // print the whole conversation if needed
+    add_message(userInput, 'user');
     console.log('Last message:', conversation[conversation.length - 1]);
 
     // Send the input to the server
@@ -35,7 +37,7 @@ async function submitAndFetchResponse() {
 }
 
 // Add a message to the chat log
-function add_message(message, role) {
+function add_message(message, role, image_url=null) {
     // Add a message packed in a new div and p element
     // Resulting in a structure like this:
     // <div class="{role}">
@@ -44,9 +46,9 @@ function add_message(message, role) {
 
     var new_message_div = document.createElement('div');
     new_message_div.className = role;
-    
+
     var new_message = document.createElement('p');
-    new_message.innerText = message;
+    new_message.innerText = message + (image_url ? '\n' + image_url.substring(0, 30) + '...' : ''); // Show only the first 30 characters of the image URL
     new_message.className = role;
     new_message_div.appendChild(new_message);
 
@@ -70,6 +72,32 @@ function get_conversation() {
     }
 
     return conversation;
+}
+
+// Get the last message from the conversation history
+function get_last_message() {
+    var userInput = document.getElementById('textInput').value;
+    var imageInput = document.getElementById('imageInput').value;
+    var content;
+
+    if (imageInput) {
+        content = [
+            { type: 'text', text: userInput },
+            {
+                type: 'image_url',
+                image_url: {
+                    url: imageInput
+                }
+            }
+        ];
+    } else {
+        content = userInput;
+    }
+
+    return {
+        role: 'user',
+        content: content
+    };
 }
 
 // Enable submitting input by pressing Enter (without Shift)
