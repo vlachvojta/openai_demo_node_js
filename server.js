@@ -20,18 +20,26 @@ app.listen(port, () => {
 
 // Enable frontend to send user input to the server
 app.post('/api/openai', async (req, res) => {
-    const { userInput } = req.body;
-    console.log('Question:', userInput);
+    const { conversation } = req.body;
+    // console.log('Conversation:', conversation);  // print the whole conversation if needed
+    console.log('User:', conversation[conversation.length - 1].content);
+
+    var messages = [
+        { 
+            role: "system",
+            content: "You are a helpful assistant."
+        }
+    ];
+    messages = messages.concat(conversation);
+
+    // Send the whole conversation to the OpenAI API
     try {
         const completion = await openai.chat.completions.create({
-            messages: [
-                { role: "system", content: "You are a helpful assistant." },
-                { role: "user", content: userInput }
-            ],
+            messages: messages,
             model: "gpt-3.5-turbo",
         });
         answer = completion.choices[0].message.content;
-        console.log('Answer:', answer);
+        console.log('GPT:', answer);
         console.log('') // Add a blank line for readability in the console
         res.json(answer);
     } catch (error) {

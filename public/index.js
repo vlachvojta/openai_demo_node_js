@@ -2,12 +2,16 @@
 // Runs in the browser
 
 async function submitAndFetchResponse() {
+    // Handle submit
     const userInput = document.getElementById('textInput').value;
     console.log('Trying to send input to OpenAI API:', userInput);
     add_message(userInput, 'user');
     document.getElementById('status').innerText = '...getting response...';
     document.getElementById('textInput').value = ''; // Clear the input field
-    console.log('Stringified input:', JSON.stringify({ userInput }));
+
+    var conversation = get_conversation();
+    // console.log('Conversation:', conversation);  // print the whole conversation if needed
+    console.log('Last message:', conversation[conversation.length - 1]);
 
     // Send the input to the server
     try {
@@ -16,12 +20,14 @@ async function submitAndFetchResponse() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ userInput })
+            body: JSON.stringify({ conversation })
         })
         const data = await response.json();
         console.log('Data being saved to responseContainer:', data);
-        add_message(data, 'assistant');
         document.getElementById('status').innerText = '';
+
+        // Add the response to the chat log
+        add_message(data, 'assistant');
     } catch (error) {
         console.error('Error sending input to OpenAI API:', error);
         document.getElementById('status').innerText = 'Failed to get a response from Node server, is it running?.';
@@ -41,6 +47,22 @@ function add_message(message, role) {
     document.getElementById('responseContainer').appendChild(new_message_div);
     document.getElementById('responseContainer').scrollTop = document.getElementById('responseContainer').scrollHeight;
     console.log('Message added:', message);
+}
+
+// Get the conversation history from <p> elements in the responseContainer
+function get_conversation() {
+    message_paragraphs = document.getElementById('responseContainer').getElementsByTagName('p');
+    var conversation = [];
+    for (let i = 0; i < message_paragraphs.length; i++) {
+        conversation.push(
+            {
+                role: message_paragraphs[i].className,
+                content: message_paragraphs[i].innerText
+            }
+        );
+    }
+
+    return conversation;
 }
 
 // Enable submitting input by pressing Enter (without Shift)

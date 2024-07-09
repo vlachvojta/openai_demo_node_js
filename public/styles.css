@@ -33,7 +33,7 @@ p.user {
   background-color: bisque;
   padding: 8px;
   border-radius: 8px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 div.assistant {
   display: flex;
@@ -46,6 +46,7 @@ p.assistant {
   padding: 8px;
   border-radius: 8px;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 #textInput {
   padding: 10px;
