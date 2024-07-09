@@ -24,7 +24,7 @@ async function submitAndFetchResponse() {
         document.getElementById('status').innerText = '';
     } catch (error) {
         console.error('Error sending input to OpenAI API:', error);
-        document.getElementById('status').innerText = 'Failed to get a response from the OpenAI API.';
+        document.getElementById('status').innerText = 'Failed to get a response from Node server, is it running?.';
     }
 }
 
