@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 const port = 3000;
 
@@ -8,16 +9,16 @@ const { OpenAI } = require('openai');
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 app.use(express.json());
-
 app.use(express.static('public')); // Serve static files from the 'public' folder
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+    console.log(`Server running at http://localhost:${port}/`);
+    console.log('Press Ctrl+C to stop the server\n');
 });
 
 app.post('/api/openai', async (req, res) => {
     const { userInput } = req.body;
-    console.log('Q:', userInput);
+    console.log('Question:', userInput);
     try {
         const completion = await openai.chat.completions.create({
             messages: [
@@ -27,7 +28,8 @@ app.post('/api/openai', async (req, res) => {
             model: "gpt-3.5-turbo",
         });
         answer = completion.choices[0].message.content;
-        console.log('A:', answer);
+        console.log('Answer:', answer);
+        console.log('') // Add a blank line for readability in the console
         res.json(answer);
     } catch (error) {
         console.error('Error calling OpenAI API:', error);

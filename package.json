@@ -1,20 +1,23 @@
 {
     "name": "openai_api_demo_nodejs",
     "version": "1.0.0",
-    "license": "ISC",
+    "license": "MIT",
     "main": "server.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/vlachvojta/openai_demo_node_js"
     },
     "scripts": {
+        "test": "node openai-test-in-terminal.mjs",
         "start": "node server.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "test_openai": "node openai-test-in-terminal.mjs"
+        "dev": "nodemon server.js"
     },
     "dependencies": {
         "express": "^4.17.1",
         "openai": "^4.52.3",
         "readline": "^1.3.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
     }
 }
