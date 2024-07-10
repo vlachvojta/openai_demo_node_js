@@ -1,6 +1,7 @@
 # openai demo Node.js
 
 **Code available at: [bit.ly/bissit_openai](https://bit.ly/bissit_openai)**
+Running app: [pcsevcik.fit.vutbr.cz:3000](http://pcsevcik.fit.vutbr.cz:3000/)
 
 <p align="center">
   <img src="assets/screenshot.png" alt="Screenshot" width="800"/>
