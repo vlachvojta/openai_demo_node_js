@@ -2,7 +2,7 @@
 
 **Code available at: [bit.ly/bissit_openai](https://bit.ly/bissit_openai)**
 
-Running app: [pcsevcik.fit.vutbr.cz:3000](http://pcsevcik.fit.vutbr.cz:3000/)
+Running app: [bit.ly/bissit_openai_demo](https://bit.ly/bissit_openai_demo)
 
 <p align="center">
   <img src="assets/screenshot.png" alt="Screenshot" width="800"/>
