@@ -1,7 +1,13 @@
 // Frontend code for sending user input to the server
 // Runs in the browser
 
-let conversation = [];
+// init conversation memory with a system message to set the tone of assistant's answers
+let conversation = [
+    {
+        role: "system",
+        content: "You are a helpful assistant."
+    }
+];
 
 async function submitAndFetchResponse() {
     // Handle submit
@@ -17,7 +23,7 @@ async function submitAndFetchResponse() {
     document.getElementById('textInput').value = ''; // Clear the input field
     document.getElementById('imageInput').value = ''; // Clear the image input field
 
-    // Send the input to the server
+    // Send the input to the server through /api/openai endpoint
     try {
         const response = await fetch('/api/openai', {
             method: 'POST',
@@ -30,7 +36,6 @@ async function submitAndFetchResponse() {
         console.log('Data being saved to responseContainer:', data);
         document.getElementById('status').innerText = '';
 
-        // Add the response to the chat log
         add_message_to_conversation(data, 'assistant');
         add_message_to_html(data, 'assistant');
     } catch (error) {
@@ -94,7 +99,7 @@ function add_message_to_conversation(text, role, image_url=null) {
         }
     }
 
-    conversation.push(message);
+    conversation = [message];
 }
 
 // Enable submitting input by pressing Enter (without Shift)
