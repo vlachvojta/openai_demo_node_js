@@ -1,5 +1,7 @@
 # openai demo Node.js
 
+**Code available at: [https://bit.ly/bissit_openai](bit.ly/bissit_openai)**
+
 <p align="center">
   <img src="assets/screenshot.png" alt="Screenshot" width="800"/>
 </p>

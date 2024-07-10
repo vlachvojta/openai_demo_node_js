@@ -1,8 +1,9 @@
 // Frontend code for sending user input to the server
 // Runs in the browser
 
-// init conversation memory with a system message to set the tone of assistant's answers
-let conversation = [
+// TODO: add this to the beginning of every conversation
+// setup message to set the tone of the assistant's answers
+var setup_message = [
     {
         role: "system",
         content: "You are a helpful assistant."
@@ -14,7 +15,7 @@ async function submitAndFetchResponse() {
     var textInput = document.getElementById('textInput').value;
     var imageInput = document.getElementById('imageInput').value;
 
-    add_message_to_conversation(textInput, 'user', imageInput);
+    var conversation = add_message_to_conversation(textInput, 'user', imageInput);
     add_message_to_html(textInput, 'user', imageInput);
 
     document.getElementById('status').innerText = '...getting response...';
@@ -99,7 +100,9 @@ function add_message_to_conversation(text, role, image_url=null) {
         }
     }
 
-    conversation = [message];
+    // TODO: store all messages in a conversation
+
+    return [message];
 }
 
 // Enable submitting input by pressing Enter (without Shift)
