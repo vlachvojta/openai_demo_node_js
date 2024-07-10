@@ -22,6 +22,9 @@ Install with:<br>
 Run with:<br>
 `npm run start`
 
+Run (with auto-reload after file change):<br>
+`npm run dev`
+
 Site should be available at: `localhost:3000`
 
 ## Task #1: conversation
