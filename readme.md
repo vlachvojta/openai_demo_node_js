@@ -24,6 +24,21 @@ Run with:<br>
 
 Site should be available at: `localhost:3000`
 
+## Task #1: conversation
+Add memory in Javascript so that the model can give you an answer based on previsou questions and answers.
+### Example
+Q: What is the capital of Czech Republic.
+A: The Capital of Czech Republic is Prague.
+Q: What is its population?
+*what you want*
+A: The population of Prague is approximately 1,3 milions
+*what you get by default:*
+A: It sounds like you are asking about some specific place, but I don't know which. Please provide more information.
+
+## Task #2: add image upload
+So far, the website allows only image url as an input. Add the option to upload image from your computer and ask a question about it.
+
+
 ## Sources:
 
 [Starting snippet for server-side Javascript request test](https://platform.openai.com/docs/quickstart?context=node)
