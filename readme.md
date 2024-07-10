@@ -1,7 +1,7 @@
 # openai demo Node.js
 
 <p align="center">
-  <img src="assets/demo.png" alt="Demo" width="700"/>
+  <img src="assets/screenshot.png" alt="Screenshot" width="800"/>
 </p>
 <p align="center">
   Simple demo using Node.js and openai library.
