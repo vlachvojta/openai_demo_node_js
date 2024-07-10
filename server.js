@@ -7,9 +7,8 @@ const app = express();
 const port = 3000;
 
 const { OpenAI } = require('openai');
-//! API KEY should be A SECRET (it's like a pin to your credit card), for purposes of this demo it is added here,
-//! but WILL BE DEACTIVATED after the summer school.
-const openai = new OpenAI({ apiKey: "sk-proj-8REHgUxXKzudu0L8zwVyT3BlbkFJt01Gm4zOhDVjTlNMu5hQ" });
+// TODO put your API key here, DO NOT COMMIT IT to git
+const openai = new OpenAI({ apiKey: "your-api-key" });
 
 app.use(express.json());
 app.use(express.static('public')); // Serve static files from the 'public' folder
