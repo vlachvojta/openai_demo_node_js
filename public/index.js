@@ -1,17 +1,17 @@
 // Frontend code for sending user input to the server
 // Runs in the browser
 
+let conversation = [];
+
 async function submitAndFetchResponse() {
     // Handle submit
-    const userInput = document.getElementById('textInput').value;
-    console.log('Trying to send input to OpenAI API:', userInput);
+    var textInput = document.getElementById('textInput').value;
+    var imageInput = document.getElementById('imageInput').value;
+
+    add_message_to_conversation(textInput, 'user', imageInput);
+    add_message_to_html(textInput, 'user', imageInput);
+
     document.getElementById('status').innerText = '...getting response...';
-    
-    var conversation = get_conversation();
-    conversation.push(get_last_message());
-    
-    // console.log('Conversation:', conversation);  // print the whole conversation if needed
-    add_message(userInput, 'user', document.getElementById('imageInput').value);
     console.log('Last message:', conversation[conversation.length - 1]);
 
     document.getElementById('textInput').value = ''; // Clear the input field
@@ -31,7 +31,8 @@ async function submitAndFetchResponse() {
         document.getElementById('status').innerText = '';
 
         // Add the response to the chat log
-        add_message(data, 'assistant');
+        add_message_to_conversation(data, 'assistant');
+        add_message_to_html(data, 'assistant');
     } catch (error) {
         console.error('Error sending input to OpenAI API:', error);
         document.getElementById('status').innerText = 'Failed to get a response from Node server, is it running?.';
@@ -39,7 +40,7 @@ async function submitAndFetchResponse() {
 }
 
 // Add a message to the chat log
-function add_message(message, role, image_url=null) {
+function add_message_to_html(message, role, image_url=null) {
     // Add a message packed in a new div and p element
     // Resulting in a structure like this:
     // <div class="{role}">
@@ -58,7 +59,7 @@ function add_message(message, role, image_url=null) {
         new_image.src = image_url;
         new_image.alt = 'Image';
         new_message_div.appendChild(new_image);
-        }
+    }
 
     new_message.className = role;
     new_message_div.appendChild(new_message);
@@ -69,46 +70,31 @@ function add_message(message, role, image_url=null) {
     console.log('Message added:', message);
 }
 
-// Get the conversation history from <p> elements in the responseContainer
-function get_conversation() {
-    message_paragraphs = document.getElementById('responseContainer').getElementsByTagName('p');
-    var conversation = [];
-    for (let i = 0; i < message_paragraphs.length; i++) {
-        conversation.push(
-            {
-                role: message_paragraphs[i].className,
-                content: message_paragraphs[i].innerText
-            }
-        );
-    }
+// Get the last message from the input fields
+function add_message_to_conversation(text, role, image_url=null) {
+    var message = {};
 
-    return conversation;
-}
-
-// Get the last message from the conversation history
-function get_last_message() {
-    var userInput = document.getElementById('textInput').value;
-    var imageInput = document.getElementById('imageInput').value;
-    var content;
-
-    if (imageInput) {
-        content = [
-            { type: 'text', text: userInput },
-            {
-                type: 'image_url',
-                image_url: {
-                    url: imageInput
+    if (image_url) {
+        message = {
+            'role': role,
+            'content': [
+                { type: 'text', text: text },
+                {
+                    type: 'image_url',
+                    image_url: {
+                        url: image_url
+                    }
                 }
-            }
-        ];
+            ]
+        }
     } else {
-        content = userInput;
+        message = {
+            'role': role,
+            'content': text
+        }
     }
 
-    return {
-        role: 'user',
-        content: content
-    };
+    conversation.push(message);
 }
 
 // Enable submitting input by pressing Enter (without Shift)
