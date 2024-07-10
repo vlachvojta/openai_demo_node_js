@@ -4,6 +4,8 @@
 
 Running app: [bit.ly/bissit_openai_demo](https://bit.ly/bissit_openai_demo)
 
+Api key for BISSIT purposes: [bit.ly/bissit_openai_key](bit.ly/bissit_openai_key)
+
 <p align="center">
   <img src="assets/screenshot.png" alt="Screenshot" width="800"/>
 </p>
