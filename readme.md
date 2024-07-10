@@ -8,7 +8,7 @@
 </p>
 
 ## Install and run
-First make sure, you have node installed.
+Prerequisities: `npm`, `node.js`
 
 Install with:<br>
 `npm install`
